@@ -8,13 +8,13 @@ void setup(){
 }
 void draw(){
   if(frames<=180){
-    background(0,255,255);
+    background(0,255,255);  //skyblue for 3 sec, daytime
   }
   else if(frames<=360){
-    background(40,40,40);
+    background(40,40,40);  //gray for 3 sec, nighttime
   }
   else if(frames==361){
-    frames=0;
+    frames=0;  //reset
   }
   frames++;
   if(keyPressed){
@@ -39,8 +39,8 @@ void keyPressed(){
   else if(key == 's') y += 5;
 }
 void noju(float x, float y, float s, int key1 ){
-  if(key1==1)fill(255,0,0);
-  else if(key1==2)fill(0,0,255);
+  if(key1==1)fill(255,0,0);  //red
+  else if(key1==2)fill(0,0,255);  //blue
   else fill(255);  //white
   
   circle(x,y,s);  //얼굴
