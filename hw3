@@ -1,0 +1,70 @@
+float x,y,s;
+int key1;
+int frames =0; // 60 fps
+void setup(){
+  size(500,800);
+  x = y = 150;    s = 30;
+  frameRate(60);
+}
+void draw(){
+  if(frames<=180){
+    background(0,255,255);
+  }
+  else if(frames<=360){
+    background(40,40,40);
+  }
+  else if(frames==361){
+    frames=0;
+  }
+  frames++;
+  if(keyPressed){
+    if(key=='r')key1=1;
+    else if(key=='b')key1=2;
+    else key1=0;
+  }
+  noju(x,y,s,key1);
+}
+void mouseClicked(){
+  x = mouseX;    y = mouseY;
+}
+void mouseWheel(MouseEvent ee){
+  float e = ee.getCount();
+  if(e>0) s *= 1.1;
+  else if(e<0) s *= 0.9;
+}
+void keyPressed(){
+  if(key == 'a') x -= 5;
+  else if(key == 'd') x += 5;
+  else if(key == 'w') y -= 5;
+  else if(key == 's') y += 5;
+}
+void noju(float x, float y, float s, int key1 ){
+  if(key1==1)fill(255,0,0);
+  else if(key1==2)fill(0,0,255);
+  else fill(255);  //white
+  
+  circle(x,y,s);  //얼굴
+  
+  circle(x-s/4.5,y-s/7,s/4);  // 왼눈
+  circle(x+s/4.5,y-s/7,s/4);  //오른눈
+  
+  fill(0);
+  circle(x-s/4.5,y-s/7,s/8);  //왼 눈동자
+  circle(x+s/4.5,y-s/7,s/8);  //오른 눈동자
+  
+  arc(x,y,s/10,s/20,0,PI);  // 입
+  
+  arc(x+s/2+s/3,y,s*2/3,s/3,PI,PI*2);  // 오른 날개
+  arc(x+s/2+s/15,y,s*2/15,s/7,0,PI);
+  arc(x+s/2+s*3/15,y,s*2/15,s/7,0,PI);
+  arc(x+s/2+s*5/15,y,s*2/15,s/7,0,PI);
+  arc(x+s/2+s*7/15,y,s*2/15,s/7,0,PI);
+  arc(x+s/2+s*9/15,y,s*2/15,s/7,0,PI);
+  
+  arc(x-s/2-s/3,y,s*2/3,s/3,PI,PI*2);  // 왼 날개
+  arc(x-s/2-s/15,y,s*2/15,s/7,0,PI);
+  arc(x-s/2-s*3/15,y,s*2/15,s/7,0,PI);
+  arc(x-s/2-s*5/15,y,s*2/15,s/7,0,PI);
+  arc(x-s/2-s*7/15,y,s*2/15,s/7,0,PI);
+  arc(x-s/2-s*9/15,y,s*2/15,s/7,0,PI);
+}
